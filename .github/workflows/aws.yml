@@ -32,7 +32,7 @@ name: Deploy to my VM
 jobs:
   deploy:
     name: Deploy
-    runs-on: k8s-node2
+    runs-on: self-hosted
 
     steps:
     - name: image_build
