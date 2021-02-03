@@ -59,5 +59,7 @@ jobs:
       run: |
         # docker-compose -f docker-compose.yml down
         # docker-compose -f docker-compose.yml up -d
-        cat ./scripts/init.sh
+        ls -l
+        pwd
+        # cat ./scripts/init.sh
         echo "please try to access http://192.168.33.151:8080/"
