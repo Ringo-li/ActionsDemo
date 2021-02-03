@@ -1,0 +1,46 @@
+# 自定义当前执行文件的名称
+name: my_action deploy to my VM
+
+# 整个流程在master分支发生push事件时触发
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  CI:
+    name: ci
+    # 运行在self-hosted标签的虚拟机中
+    runs-on: self-hosted
+
+    steps:
+    # 获取仓库源码
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+     # 获取image
+    - name: image_build
+      id: image_build
+      run: |
+        #docker build  -t registry.example.com/flask-redis .
+        docker pull liruiyu/flask_redis_test
+        docker pull redis
+        echo "download image flask_redis_test success"
+        # docker push  registry.example.com/flask-redis 
+
+    # 单元测试，代码风格检查
+    - name: test
+      id: test
+      run: |
+        echo "Test stage will be passed"
+        sleep 5
+
+
+    # 部署
+    - name: deploy
+      id: deploy
+      run: |
+        docker-compose -f docker-compose.yml down
+        docker-compose -f docker-compose.yml up -d
+        echo "please try to access http://192.168.33.151:8080/"
