@@ -6,7 +6,7 @@ services:
     image: redis
 
   web:
-    image: registry.example.com/flask-redis
+    image: liruiyu/flask_redis_test
     ports:
       - 8080:5000
     environment:
