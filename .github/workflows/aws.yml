@@ -41,7 +41,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
-        
+
     - name: image_build
       id: image_build
       run: |
@@ -62,9 +62,6 @@ jobs:
     - name: deploy
       id: deploy
       run: |
-        # docker-compose -f docker-compose.yml down
-        # docker-compose -f docker-compose.yml up -d
-        ls -l
-        pwd
-        # cat ./scripts/init.sh
+        docker-compose -f docker-compose.yml down
+        docker-compose -f docker-compose.yml up -d
         echo "please try to access http://192.168.33.151:8080/"
