@@ -46,9 +46,10 @@ jobs:
         # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         # echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-        docker build  -t registry.example.com/flask-redis .
+        #docker build  -t registry.example.com/flask-redis .
         echo "Building image lask-redis"
-        docker push  registry.example.com/flask-redis 
+        sleep 5
+        #docker push  registry.example.com/flask-redis 
 
     - name: test
       id: test
@@ -61,6 +62,6 @@ jobs:
     - name: deployt
       id: deploy
       run: |
-        docker-compose -f docker-compose.yml down
-        docker-compose -f docker-compose.yml up -d
+        #docker-compose -f docker-compose.yml down
+        #docker-compose -f docker-compose.yml up -d
         echo "please try to access http://192.168.33.151:8080/"
